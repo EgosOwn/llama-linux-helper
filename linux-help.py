@@ -53,7 +53,7 @@ for line in cmd_result.split("\n"):
 	cleaned_result += line
 cmd_result = cleaned_result
 if cmd_result:
-	print("Run this?")
+	print("Run this? y/n")
 	print(cmd_result)
 	if input() == "y":
 		os.system(cmd_result)
