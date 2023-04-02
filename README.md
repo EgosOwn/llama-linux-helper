@@ -8,12 +8,12 @@ I tested it with both LLaMA 7B and LLaMA 30B* (*actually Alpaca 30B but I don't 
 
 There is a speed trade off, the larger models produce better results but take longer to run. On my i5-8400 I find 7B faster than searching the web or deciphering man pages, but not so for 30B.
 
-## Installation
+## Installation and Usage
 
 You need Python on Linux and LLaMA.cpp installed. From there you can drop the script, make it executable, and run it like so:
 
 ```./linux-help.py "Create zip file containing data.txt"```
-  
+
 Example result:
 
 ```zip -r data.zip data.txt```
@@ -35,3 +35,4 @@ Maybe:
 * Auto or manually specify distro or shell in the prompt
 * Allow executing on remote SSH server (but copy back the results to run them)
 * YOLO mode - Flag to auto exec resulting command (WCGW)
+* Daemon mode to contextually suggest commands based on current session (Copilot will do this so likely will never implement)
