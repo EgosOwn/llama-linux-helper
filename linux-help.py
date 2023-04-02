@@ -19,7 +19,7 @@ except IndexError:
 	except KeyboardInterrupt:
 		sys.exit(1)
 
-prompt = f"A linux command that {cmd_desc}:\n" + r"\begin{code}"
+prompt = f"linux command that does the following: {cmd_desc}:\n" + r"\begin{code}"
 input_file = "/tmp/cmd-input"
 with open(input_file, "w") as f:
 	f.write(prompt)
@@ -36,14 +36,16 @@ def find_between( s, first, last ):
 cmd = [LLAMA_DIR + "main", "-m", LINUX_HELP_LLAMA_MODEL, "-f", input_file, "-b", "256", "--top_k", "10000", "--temp", "0.1", "--repeat_penalty", "1", "-t", cpu]
 
 res = ""
-with subprocess.Popen(cmd, stdout=subprocess.PIPE, stderr=subprocess.STDOUT) as process:
-	for line in process.stdout:
-		line = line.decode('utf-8')
-		if r"\end{code}" in line:
-			process.kill()
-			break
-			print(line.decode('utf8'))
-		res += line
+try:
+	with subprocess.Popen(cmd, stdout=subprocess.PIPE, stderr=subprocess.STDOUT) as process:
+		for line in process.stdout:
+			line = line.decode('utf-8')
+			if r"\end{code}" in line:
+				process.kill()
+				break
+			res += line
+except KeyboardInterrupt:
+	sys.exit(1)
 
 
 cmd_result = res.split(r"\begin{code}", 1)[1].replace("\end{code}", "").removeprefix("#").removeprefix("$").strip()
@@ -53,12 +55,15 @@ for line in cmd_result.split("\n"):
 	cleaned_result += line
 cmd_result = cleaned_result
 if cmd_result:
-	print("Run this? y/n")
 	print(cmd_result)
-	if input() == "y":
-		os.system(cmd_result)
+	print("\nRun this? y/n")
+	try:
+		if input() == "y":
+			os.system(cmd_result)
+	except KeyboardInterrupt:
+		pass
 else:
-	print("Output does not seem like a command, but here it is")
+	print("Output does not seem like a command, but here it is:\n")
 	print(res)
 
-	
+
