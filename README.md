@@ -1,4 +1,4 @@
-# LLaMA Linux Helper 🐧🤝🏼🦙
+# LLaMA Linux Helper 🐧🤝🦙
 
 This simple Python script wraps [llama.cpp](https://github.com/ggerganov/llama.cpp) to generate and (optionally) execute Linux shell commands from natural language. (NO GPU REQUIRED)
 
