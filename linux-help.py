@@ -73,4 +73,10 @@ except KeyboardInterrupt:
     sys.exit(1)
 
 res = res.lstrip().removeprefix("#!/bin/bash").removeprefix("#!/bin/sh").removeprefix('#').removeprefix('$').lstrip()
+
 print(res)
+
+if input("Do you wish to run this command? y/n: ").lower() == "y":
+    os.system(res)
+else:
+    print("Command not run")
