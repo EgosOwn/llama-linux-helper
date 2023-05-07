@@ -12,7 +12,7 @@ There is a speed trade off, the larger models produce better results but take lo
 
 # Installation and Usage
 
-You need Python on Linux and [LLaMA.cpp](https://github.com/ggerganov/llama.cpp/) installed. From there you can drop the script, make it executable, and run it like so:
+You need python and [llama-cpp-python](https://pypi.org/project/llama-cpp-python/) installed. From there you can drop the script, make it executable, and run it like so:
 
 ```./linux-help.py "Create zip file containing data.txt"```
 
